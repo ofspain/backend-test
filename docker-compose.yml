@@ -1,0 +1,35 @@
+version: '3.6'
+
+services:
+  cardapp:
+    build: ./happiness
+    container_name: test-app
+    ports:
+      - '5001:8080'
+      - '5002:4848'
+      - '5003:8181'
+    networks:
+      - applicationnet
+    depends_on:
+      - database-test
+    links:
+      - database-test
+
+  database-test:
+    image: ofspain/mysql_furnish:1.0.0
+    container_name: test-data_service
+    restart: 'always'
+    environment:
+        MYSQL_ROOT_PASSWORD : "root"
+        MYSQL_ROOT_USER : "root"
+    ports:
+        - '7703:3306'
+    command: 
+       - init-file /datasource/init.sql
+    volumes:
+      - /storage/database:/var/lib/mysql
+    networks:
+      - applicationnet
+networks:
+  applicationnet:
+     driver: "bridge"
