@@ -24,12 +24,49 @@ import lombok.RequiredArgsConstructor;
 
 
 @RestController
-@RequestMapping("/api/v1/")
 @RequiredArgsConstructor
 public class CardApi {
 
     private final CardService cardService;
     private final BankService bankService;
+
+
+
+    @GetMapping("/")
+    public Map<String, Object> homeInfor(){
+
+      Map<String,Object> mainload = new HashMap<>();
+
+      String general = "Endpoints for adding,getting by id and multiple for"+
+                     "entity Card and Bank Customer is implemented but not exposed.";
+      String post_card = "issue post request to /cards/";
+      String get_card_by_id = "Issue get request to /cards/{id_of_card}";
+      String post_bank = "issue post request to /banks/";
+      String get_bank_by_id = "issue get request to /banks/{id_of_bank}";
+      String get_multiple = "issue get request respectively to /banks/ and /cards/";
+
+      String question1 = "issue get request to /card-scheme/verify/{number}";
+      String question2 = "issue get request to /card-scheme/stats";
+      String last_note = "Bank must exsist before a card can be posted as it is"+
+                                  "required attribute of card";
+
+     mainload.put("GENERAL_INFOR", general);
+     mainload.put("POST_CARD", post_card);
+     mainload.put("GET_BY_ID_CARD", get_card_by_id);
+     mainload.put("POST_BANK", post_bank);
+     mainload.put("GET_BY_ID_BANK", get_bank_by_id);
+     mainload.put("QUESTION_1",question1);
+     mainload.put("QUESTION_2",question2);
+     mainload.put("NOTE",last_note);
+
+
+
+      return mainload;
+    }
+
+
+
+
 
     @GetMapping("/cards/")
     public CollectionModel<EntityModel<Card>> findAllCards(
