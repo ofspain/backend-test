@@ -1,0 +1,12 @@
+Since the algorithm uses an out for loop that makes call to various nested loop
+with some of the nested loop themselves nesting some other loop.
+The classification of the algorithm used based on the loop nesting is thus
+
+a) Parent outer loop.....O(n) n depends on the lenght of the array
+b) Immediate nested loop....O(C) is is a constant of 30000(Possible range of values in array)
+c) Next nested loop......O(C) as in b above
+
+The other three nested loop are O(v) where variable that depends on the maxmium
+       lenght of bit representation of values of 15 lenght, this becomes O(15)
+
+The final big(O) value is thus O(n^c*c + 15) 
