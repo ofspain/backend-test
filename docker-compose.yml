@@ -5,9 +5,9 @@ services:
     build: ./happiness
     container_name: test-app
     ports:
-      - '5001:8080'
+      - '80:8080'
       - '5002:4848'
-      - '5003:8181'
+      - '443:8181'
     networks:
       - applicationnet
     depends_on:
